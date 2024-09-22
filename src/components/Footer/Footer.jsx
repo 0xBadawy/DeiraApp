@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { IoIosArrowBack } from "react-icons/io";
-import { FaFacebookF, FaInstagram, FaSnapchatGhost, FaTiktok } from "react-icons/fa"; // Import the icons
+import { IoIosArrowBack, IoIosMail } from "react-icons/io";
+import { FaFacebookF, FaInstagram, FaPhone, FaSnapchatGhost, FaTiktok } from "react-icons/fa"; // Import the icons
 import FooterLogo from "../../assets/Images/Logo/Logo0.png";
 import { FaXTwitter } from "react-icons/fa6";
+import { SiWhatsapp } from "react-icons/si";
 
 const Footer = () => {
   const [socialMedia, setSocialMedia] = useState([
@@ -24,8 +25,9 @@ const Footer = () => {
   ]);
 
   const [contactInfo, setContactInfo] = useState([
-    { text: { en: "drabdulaziza46@gmail.com", ar: "drabdulaziza46@gmail.com" }, link: "mailto:drabdulaziza46@gmail.com" },
-    { text: { en: "00966507728885", ar: "00966507728885" }, link: "tel:00966507728885" },
+    { text: { en: "drabdulaziza46@gmail.com", ar: "drabdulaziza46@gmail.com" }, link: "mailto:drabdulaziza46@gmail.com", icon: <IoIosMail /> },
+    { text: { en: "00966507728885", ar: "00966507728885" }, link: "tel:00966507728885", icon: <FaPhone /> },
+    { text: { en: "00966507728885", ar: "00966507728885" }, link: "https://api.whatsapp.com/send?phone=00966507728885", icon: <SiWhatsapp /> },
   ]);
 
   return (
@@ -47,6 +49,7 @@ const Footer = () => {
                 <li key={index}>
                   <a href={item.link} className="flex items-center transition duration-100 ease-in transform hover:opacity-70 w-fit font-light">
                     <IoIosArrowBack />
+                    {item.icon}
                     {item.text.ar}
                   </a>
                 </li>
@@ -80,8 +83,9 @@ const Footer = () => {
             <ul>
               {contactInfo.map((item, index) => (
                 <li key={index}>
-                  <a href={item.link} className="flex items-center transition duration-100 ease-in transform hover:opacity-70 w-fit font-light">
+                  <a href={item.link} className="flex items-center gap-3 transition duration-100 ease-in transform hover:opacity-70 w-fit font-light">
                     <IoIosArrowBack />
+                    {item.icon}
                     {item.text.ar}
                   </a>
                 </li>

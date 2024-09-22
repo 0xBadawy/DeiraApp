@@ -148,17 +148,16 @@ const FeaturesCards = () => {
   const Text = {
     Head1: {
       en: "Find what you need in an instant.",
-      ar: "   اكتشف أفضل إعلانات ",
+      ar: "اكتشف أفضل إعلانات ",
     },
-    Head2: { en: "Browse a variety of items to suit all your needs!", ar: "تصفح أصناف متنوعة تناسب كل احتياجاتك! " },
+    Head2: { en: "Browse a variety of items to suit all your needs!", ar: "تصفح أصناف متنوعة تناسب كل احتياجاتك!" },
   };
 
   const { appSetting } = useContext(AppSettingContext);
-
   const [StoreLink, setStoreLink] = useState("https://apps.apple.com/sa/app");
-  useEffect(() => {
-    console.log(os);
 
+  useEffect(() => {
+    const os = getOS();
     if (os === "iOS" || os === "MacOS") {
       setStoreLink("https://apps.apple.com/sa/app");
     } else if (os === "Android" || os === "Linux") {
@@ -166,9 +165,10 @@ const FeaturesCards = () => {
     } else {
       setStoreLink("https://apps.apple.com/sa/app");
     }
-  }, [os]);
+  }, []);
+
   return (
-    <div className={`dark:bg-black ${appSetting.IsDark && "dark"}`}>
+    <div className={`dark:bg-black ${appSetting.IsDark && "dark"} text-right`} style={{ direction: "rtl" }}>
       <div className="dark:bg-gradient-to-bl dark:from-[#000] dark:via-gray-700 dark:to-[#000]">
         <div className="container mx-auto py-[100px]" style={{ fontFamily: "Alexandria" }}>
           <div className="items-center mx-auto max-w-[1200px] px-3">
@@ -179,27 +179,29 @@ const FeaturesCards = () => {
             </div>
             <div className="flex">
               <div
-                className={`grid grid-cols-1 md:grid-cols-4 gap- md:flex-row md:gap-6 items-center text-center mx-auto ${
-                  appSetting.Language === "ar" ? "text-right" : "text-left"
+                className={`grid grid-cols-1 md:grid-cols-3 gap-3 md:flex-row md:gap-6 items-center text-center mx-auto ${
+                  appSetting.Language === "ar" ? "text-right" : "text-right"
                 }`}
               >
                 {Data.map((item, index) => (
                   <a
                     href={StoreLink}
                     key={index}
-                    className="cursor-pointer rounded-lg shadow-xl w-[270px] h-[270px] p-6 transition duration-500 ease-in-out transform hover:scale-105 hover:brightness-90 ScrollEffectApper flex flex-col items-center justify-between"
+                    className="cursor-pointer rounded-lg gap-3 shadow-xl w-[370px] h-[170px] p-6 transition duration-500 ease-in-out transform hover:scale-105 hover:brightness-90 ScrollEffectApper flex flex-row items-center"
                   >
-                    <div className={`flex items-center justify-center h-[60%] ${index === 11 ? "pt-0" : ""}`}>
-                      <img src={item.icon} className="w-[30%] object-cover transition duration-500 ease-in-out transform hover:scale-110" alt={item.text[appSetting.Language]} />
+                    <div className={`flex items-center justify-center w-[40%] ${index === 11 ? "pt-0" : ""}`}>
+                      <img src={item.icon} className="w-[100%] object-cover transition duration-500 ease-in-out transform hover:scale-110" alt={item.text[appSetting.Language]} />
                     </div>
-                    <h1 className="text-xl font-bold my-2 text-center">{item.text[appSetting.Language]}</h1>
-                    <div className="text-sm text-center">
-                      {item.services.map((service, serviceIndex) => (
-                        <p className="inline" key={serviceIndex}>
-                          {serviceIndex === 0 ? "" : " - "}
-                          {service}
-                        </p>
-                      ))}
+                    <div className="flex flex-col items-start ml-4 w-full">
+                      <h1 className="text-xl font-bold my-2 text-left">{item.text[appSetting.Language]}</h1>
+                      <div className="text-sm text-">
+                        {item.services.map((service, serviceIndex) => (
+                          <p className="inline text-right" key={serviceIndex}>
+                            {serviceIndex === 0 ? "" : " - "}
+                            {service}
+                          </p>
+                        ))}
+                      </div>
                     </div>
                   </a>
                 ))}

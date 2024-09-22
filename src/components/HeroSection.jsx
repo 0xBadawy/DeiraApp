@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AppSettingContext } from "../context/ThemeContext";
 import screenImage from "../assets/Screens/Image1.png";
+import Money from "../assets/Images/10-rs 1.png";
 import axios from "axios";
 
 const getOS = () => {
@@ -17,7 +18,7 @@ const getOS = () => {
 
 const HeroSection = () => {
   const [text, setText] = useState({
-    title: { ar: "الـــديـــرة", en: "Deira" },
+    title: { ar: " الـــديـــرة", en: "Deira" },
     secondTitle: {
       ar: " أهلاً بكم في تطبيق",
       en: " ",
@@ -42,19 +43,20 @@ const HeroSection = () => {
             <div className="flex items-center justify-between mx-auto max-w-[1200px] ">
               <div className="text-center w-full" style={{ direction: "rtl" }}>
                 <div className={`p-9 text-center  md:p-0} `}>
-                  <h2 className={`text-[35px]  font-semibold my-8 dark:text-[#ffffff]   `}>
-                    {text.secondTitle[appSetting.Language]}
-                    <h2 className={`text-[70px] md:text-[120px] font-bold text-primary dark:text-[#ffffff]   `}>{text.title[appSetting.Language]} </h2>
-                    <span className="text-xl md:text-[35px]">{text.secondTitle1[appSetting.Language]}</span>
+                  <h2 className={`text-[73px]  font-bold my-8 dark:text-[#ffffff]   `}>
+                    {text.secondTitle[appSetting.Language] + text.title[appSetting.Language]}
+                    <h2 className={`text-[70px] md:text-[10px] font-bold text-primary dark:text-[#ffffff]   `}></h2>
+                    <span className="text-xl md:text-[30px]">{text.secondTitle1[appSetting.Language]}</span>
                   </h2>
-                  <h4 className={`text-[25px]  dark:text-[#ffffff] md:mt-20 font-bold  `}>{text.description[appSetting.Language]}</h4>
+                  <img src={Money} alt="Screen" className="w-[200px] mx-auto" />
+                  <h4 className={`text-[25px]  dark:text-[#ffffff]  font-bold  `}>{text.description[appSetting.Language]}</h4>
                 </div>
 
                 <div>
-                  <div className="flex-col items-center flex mx-auto  md:gap-6 md:flex-row-reverse md:mt-9 w-fit ">
+                  <div className="flex-col items-center flex mx-auto  md:gap-14 md:flex-row-reverse md:mt-9 w-fit ">
                     <div
                       onClick={() => window.open("https://apps.apple.com/sa/app", "_blank")}
-                      className="cursor-pointer flex mt-3 w-48 h-14 transition duration-500 ease-in-out transform hover:scale-105 bg-black text-white rounded-xl items-center justify-center "
+                      className="cursor-pointer flex mt-3 w-48 scale-125 h-14 transition duration-500 ease-in-out transform hover:scale-150 bg-black text-white rounded-xl items-center justify-center "
                     >
                       <div className="mr-3">
                         <svg viewBox="0 0 384 512" width="30">
@@ -72,7 +74,7 @@ const HeroSection = () => {
 
                     <div
                       onClick={() => window.open("https://play.google.com/store/apps/", "_blank")}
-                      className="flex mt-3 w-48 h-14 bg-black text-white rounded-lg items-center justify-center transition duration-500 ease-in-out transform hover:scale-105 cursor-pointer"
+                      className="flex mt-3 w-48 scale-125 h-14 bg-black text-white rounded-lg items-center justify-center transition duration-500 ease-in-out transform hover:scale-150  cursor-pointer"
                       style={{ direction: appSetting.Language == "ar" ? "ltr" : "ltr" }}
                     >
                       <div className="mr-3">
