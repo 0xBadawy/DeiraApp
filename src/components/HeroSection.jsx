@@ -21,7 +21,7 @@ const HeroSection = () => {
     title: { ar: " الـــديـــرة", en: "Deira" },
     secondTitle: {
       ar: " أهلاً بكم في تطبيق",
-      en: " Welcome to the application ",
+      en: " Welcome to application ",
     },
     secondTitle1: {
       ar: " المكان الأمثل لنشر واستعراض الإعلانات نحن هنا لنساعدك و نسعدك",
@@ -38,7 +38,7 @@ const HeroSection = () => {
   return (
     <>
       <div className={`dark:bg-black ${appSetting.IsDark && "dark"}`} style={{ direction: appSetting.Language == "ar" ? "rtl" : "ltr" }}>
-        <div className="md:h-[82vh] h-[115vh] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#8A2BE276] via-[#fff] to-[#8A2BE276]   dark:bg-gradient-to-t  dark:from-[#000]  dark:via-gray-700  dark:to-[#000]">
+        <div className="md:h-[82vh] h-[130vh] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#8A2BE276] via-[#fff] to-[#8A2BE276]   dark:bg-gradient-to-t  dark:from-[#000]  dark:via-gray-700  dark:to-[#000]">
           <div className="container mx-auto  mb-[50px]">
             <div className="flex items-center justify-between mx-auto max-w-[1200px] ">
               <div className="text-center w-full" style={{ direction: "rtl" }}>
@@ -55,10 +55,10 @@ const HeroSection = () => {
                 </div>
 
                 <div>
-                  <div className="flex-col items-center flex mx-auto  md:gap-14 md:flex-row-reverse md:mt-9 w-fit ">
+                  <div className="flex-col items-center flex mx-auto gap-10  md:gap-14 md:flex-row-reverse md:mt-9 w-fit ">
                     <div
                       onClick={() => window.open("https://apps.apple.com/sa/app", "_blank")}
-                      className="cursor-pointer mb-6 flex mt-3 w-48 scale-125 h-14 transition duration-500 ease-in-out transform hover:scale-150 bg-black text-white rounded-xl items-center justify-center "
+                      className="cursor-pointer  flex mt-3 w-48 scale-125 h-14 transition duration-500 ease-in-out transform hover:scale-150 bg-black text-white rounded-xl items-center justify-center "
                     >
                       <div className="mr-3">
                         <svg viewBox="0 0 384 512" width="30">

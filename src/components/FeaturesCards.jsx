@@ -185,8 +185,6 @@ const FeaturesCards = () => {
         { en: `Painting in ${Governate.en}`, ar: `أصباغ ${Governate.ar}` },
         { en: `Cleaning in ${Governate.en}`, ar: `تنظيف ${Governate.ar}` },
         { en: `Satellite in ${Governate.en}`, ar: `ستلايت ${Governate.ar}` },
-        { en: `Blacksmith in ${Governate.en}`, ar: `حداد ${Governate.ar}` },
-        { en: `Surveyor in ${Governate.en}`, ar: `مساح ${Governate.ar}` },
       ],
     },
   ];
@@ -233,7 +231,7 @@ const FeaturesCards = () => {
                   <a
                     href={StoreLink}
                     key={index}
-                    className="cursor-pointer rounded-lg gap-3 shadow-xl w-[390px] h-[190px] p-6 transition duration-500 ease-in-out transform hover:scale-105 hover:brightness-90 ScrollEffectApper flex flex-row items-center"
+                    className="cursor-pointer rounded-lg gap-3 shadow-xl max-w-[390px] h-[190px] p-6 transition duration-500 ease-in-out transform hover:scale-105 hover:brightness-90 ScrollEffectApper flex flex-row items-center overflow-hidden"
                   >
                     <div className="image-container w-[40%]">
                       <img className="w-[100%] object-cover transition duration-500 ease-in-out transform hover:scale-110" src={item.icon} alt="Image" />
@@ -256,7 +254,7 @@ const FeaturesCards = () => {
               </div>
             </div>
             <div className="mt-12 text-center">
-              <a href={StoreLink} className="py-3 px-5 text-sm md:text-lg rounded-lg bg-gradient-to-l from-[#2375f3] to-primary text-white shadow-sm mt-4 hover:opacity-75">
+              <a href={StoreLink} className="py-3 px-5 text-xs md:text-lg rounded-lg bg-gradient-to-l from-[#2375f3] to-primary text-white shadow-sm mt-4 hover:opacity-75">
                 {Text.Head2[appSetting.Language]}
               </a>
             </div>
