@@ -28,12 +28,21 @@ const getOS = () => {
 };
 
 const FeaturesCards = () => {
-  const [Governate, setGovernate] = useState("رفحاء");
+  const [Governate, setGovernate] = useState({ en: "Rafha", ar: "رفحاء" });
   const [city, setCity] = useState("");
   const os = getOS();
 
   const getCityName = async (lat, lng) => {
     const response = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json&accept-language=ar`);
+    const data = await response.json();
+    if (data.address && data.address.city) {
+      return data.address.city;
+    }
+    return null;
+  };
+
+  const getCityNameE = async (lat, lng) => {
+    const response = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json&accept-language=en`);
     const data = await response.json();
     if (data.address && data.address.city) {
       return data.address.city;
@@ -58,9 +67,11 @@ const FeaturesCards = () => {
         const lat = position.coords.latitude;
         const lng = position.coords.longitude;
         const cityName = await getCityName(lat, lng);
+        const cityNameE = await getCityNameE(lat, lng);
+
         setCity(cityName);
         if (cityName) {
-          setGovernate(cityName); // Update Governate state
+          setGovernate({ en: cityNameE, ar: cityName });
         }
       } catch (error) {
         console.error(error);
@@ -72,82 +83,117 @@ const FeaturesCards = () => {
 
   const Data = [
     {
-      text: { en: `Cars in ${Governate}`, ar: `سيارات ${Governate}` },
+      text: { en: `Cars in ${Governate.en}`, ar: `سيارات ${Governate.ar}` },
       icon: imageCar,
-      services: [`سيارات ${Governate}`, `قطع غيار ${Governate}`],
+      services: [
+        { en: `Cars in ${Governate.en}`, ar: `سيارات ${Governate.ar}` },
+        { en: `Car Parts in ${Governate.en}`, ar: `قطع غيار ${Governate.ar}` },
+      ],
     },
     {
-      text: { en: `Jobs in ${Governate}`, ar: `وظائف ${Governate}` },
+      text: { en: `Jobs in ${Governate.en}`, ar: `وظائف ${Governate.ar}` },
       icon: imageJop,
-      services: [`موظفين ${Governate}`],
+      services: [{ en: `Jobs in ${Governate.en}`, ar: `موظفين ${Governate.ar}` }],
     },
     {
-      text: { en: `Events in ${Governate}`, ar: `مناسبات ${Governate}` },
+      text: { en: `Events in ${Governate.en}`, ar: `مناسبات ${Governate.ar}` },
       icon: imagepalon,
-      services: [`حفل ${Governate}`, `أفراح ${Governate}`, `عزاء ${Governate}`],
+      services: [
+        { en: `Party in ${Governate.en}`, ar: `حفل ${Governate.ar}` },
+        { en: `Weddings in ${Governate.en}`, ar: `أفراح ${Governate.ar}` },
+        { en: `Condolences in ${Governate.en}`, ar: `عزاء ${Governate.ar}` },
+      ],
     },
     {
-      text: { en: `Clothing in ${Governate}`, ar: `ملابس ${Governate}` },
+      text: { en: `Clothing in ${Governate.en}`, ar: `ملابس ${Governate.ar}` },
       icon: imageBag,
-      services: [`عطور ${Governate}`, `تجميل ${Governate}`],
+      services: [
+        { en: `Perfumes in ${Governate.en}`, ar: `عطور ${Governate.ar}` },
+        { en: `Beauty Products in ${Governate.en}`, ar: `تجميل ${Governate.ar}` },
+      ],
     },
     {
-      text: { en: `Electronics in ${Governate}`, ar: `إلكترونيات ${Governate}` },
+      text: { en: `Electronics in ${Governate.en}`, ar: `إلكترونيات ${Governate.ar}` },
       icon: imageElectronics,
-      services: [`آيفون ${Governate}`, `سامسونج ${Governate}`, `سوني ${Governate}`],
+      services: [
+        { en: `iPhone in ${Governate.en}`, ar: `آيفون ${Governate.ar}` },
+        { en: `Samsung in ${Governate.en}`, ar: `سامسونج ${Governate.ar}` },
+        { en: `Sony in ${Governate.en}`, ar: `سوني ${Governate.ar}` },
+      ],
     },
     {
-      text: { en: `Real Estate in ${Governate}`, ar: `عقارات ${Governate}` },
+      text: { en: `Real Estate in ${Governate.en}`, ar: `عقارات ${Governate.ar}` },
       icon: imageFurniture,
-      services: [`شقق ${Governate}`, `بيوت ${Governate}`, `أراضي ${Governate}`],
+      services: [
+        { en: `Apartments in ${Governate.en}`, ar: `شقق ${Governate.ar}` },
+        { en: `Houses in ${Governate.en}`, ar: `بيوت ${Governate.ar}` },
+        { en: `Lands in ${Governate.en}`, ar: `أراضي ${Governate.ar}` },
+      ],
     },
     {
-      text: { en: `Services in ${Governate}`, ar: `خدمات ${Governate}` },
+      text: { en: `Services in ${Governate.en}`, ar: `خدمات ${Governate.ar}` },
       icon: imageSupplay,
-      services: [`معلمات ${Governate}`, `معلمين ${Governate}`, `توصيل ${Governate}`, `نقل عفش ${Governate}`],
+      services: [
+        { en: `Female Teachers in ${Governate.en}`, ar: `معلمات ${Governate.ar}` },
+        { en: `Male Teachers in ${Governate.en}`, ar: `معلمين ${Governate.ar}` },
+        { en: `Delivery in ${Governate.en}`, ar: `توصيل ${Governate.ar}` },
+        { en: `Moving Furniture in ${Governate.en}`, ar: `نقل عفش ${Governate.ar}` },
+      ],
     },
     {
-      text: { en: `Used Goods in ${Governate}`, ar: `حراج ${Governate}` },
+      text: { en: `Used Goods in ${Governate.en}`, ar: `حراج ${Governate.ar}` },
       icon: image01,
-      services: [`مستعمل ${Governate}`],
+      services: [{ en: `Used Goods in ${Governate.en}`, ar: `مستعمل ${Governate.ar}` }],
     },
     {
-      text: { en: `Home Supplies in ${Governate}`, ar: `لوازم منزلية ${Governate}` },
+      text: { en: `Home Supplies in ${Governate.en}`, ar: `لوازم منزلية ${Governate.ar}` },
       icon: image02,
-      services: [`أثاث ${Governate}`, `أجهزة كهربائية ${Governate}`, `مفروشات ${Governate}`, `مراتب ${Governate}`],
+      services: [
+        { en: `Furniture in ${Governate.en}`, ar: `أثاث ${Governate.ar}` },
+        { en: `Electrical Appliances in ${Governate.en}`, ar: `أجهزة كهربائية ${Governate.ar}` },
+        { en: `Furnishings in ${Governate.en}`, ar: `مفروشات ${Governate.ar}` },
+        { en: `Mattresses in ${Governate.en}`, ar: `مراتب ${Governate.ar}` },
+      ],
     },
     {
-      text: { en: `Animals in ${Governate}`, ar: `حيوانات ${Governate}` },
+      text: { en: `Animals in ${Governate.en}`, ar: `حيوانات ${Governate.ar}` },
       icon: image03,
-      services: [`غنم ${Governate}`, `قطط ${Governate}`],
+      services: [
+        { en: `Sheep in ${Governate.en}`, ar: `غنم ${Governate.ar}` },
+        { en: `Cats in ${Governate.en}`, ar: `قطط ${Governate.ar}` },
+      ],
     },
     {
-      text: { en: `Restaurants in ${Governate}`, ar: `مأكولات ${Governate}` },
+      text: { en: `Restaurants in ${Governate.en}`, ar: `مأكولات ${Governate.ar}` },
       icon: image04,
-      services: [`كفيهات ${Governate}`, `طبخ بيت ${Governate}`, `سوبرماركت ${Governate}`],
+      services: [
+        { en: `Cafes in ${Governate.en}`, ar: `كفيهات ${Governate.ar}` },
+        { en: `Homemade Food in ${Governate.en}`, ar: `طبخ بيت ${Governate.ar}` },
+        { en: `Supermarkets in ${Governate.en}`, ar: `سوبرماركت ${Governate.ar}` },
+      ],
     },
     {
-      text: { en: `Contractors in ${Governate}`, ar: `مقاولات ${Governate}` },
+      text: { en: `Contractors in ${Governate.en}`, ar: `مقاولات ${Governate.ar}` },
       icon: image05,
       services: [
-        `سباك ${Governate}`,
-        `كهربائي ${Governate}`,
-        `تكييف ${Governate}`,
-        `نجار ${Governate}`,
-        `ألمنيوم ${Governate}`,
-        `بلاط ${Governate}`,
-        `أصباغ ${Governate}`,
-        `تنظيف ${Governate}`,
-        `ستلايت ${Governate}`,
-        `حداد ${Governate}`,
-        `مساح ${Governate}`,
+        { en: `Plumber in ${Governate.en}`, ar: `سباك ${Governate.ar}` },
+        { en: `Electrician in ${Governate.en}`, ar: `كهربائي ${Governate.ar}` },
+        { en: `Air Conditioning in ${Governate.en}`, ar: `تكييف ${Governate.ar}` },
+        { en: `Carpenter in ${Governate.en}`, ar: `نجار ${Governate.ar}` },
+        { en: `Aluminum Work in ${Governate.en}`, ar: `ألمنيوم ${Governate.ar}` },
+        { en: `Tiles in ${Governate.en}`, ar: `بلاط ${Governate.ar}` },
+        { en: `Painting in ${Governate.en}`, ar: `أصباغ ${Governate.ar}` },
+        { en: `Cleaning in ${Governate.en}`, ar: `تنظيف ${Governate.ar}` },
+        { en: `Satellite in ${Governate.en}`, ar: `ستلايت ${Governate.ar}` },
+        { en: `Blacksmith in ${Governate.en}`, ar: `حداد ${Governate.ar}` },
+        { en: `Surveyor in ${Governate.en}`, ar: `مساح ${Governate.ar}` },
       ],
     },
   ];
 
   const Text = {
     Head1: {
-      en: "Find what you need in an instant.",
+      en: "Find what you need in an instant ",
       ar: "اكتشف أفضل إعلانات ",
     },
     Head2: { en: "Browse a variety of items to suit all your needs!", ar: "تصفح أصناف متنوعة تناسب كل احتياجاتك!" },
@@ -168,13 +214,13 @@ const FeaturesCards = () => {
   }, []);
 
   return (
-    <div className={`dark:bg-black ${appSetting.IsDark && "dark"} text-right`} style={{ direction: "rtl" }}>
+    <div className={`dark:bg-black ${appSetting.IsDark && "dark"} text-right`} style={{ direction: appSetting.Language == "ar" ? "rtl" : "ltr" }}>
       <div className="dark:bg-gradient-to-bl dark:from-[#000] dark:via-gray-700 dark:to-[#000]">
         <div className="container mx-auto py-[100px]" style={{ fontFamily: "Alexandria" }}>
           <div className="items-center mx-auto max-w-[1200px] px-3">
             <div className="text-center">
               <h5 className="font-semibold text-2xl ScrollEffectApper mb-10">
-                <span>{Text.Head1[appSetting.Language] + Governate}</span>
+                <span>{Text.Head1[appSetting.Language] + Governate[appSetting.Language]}</span>
               </h5>
             </div>
             <div className="flex">
@@ -187,25 +233,32 @@ const FeaturesCards = () => {
                   <a
                     href={StoreLink}
                     key={index}
-                    className="cursor-pointer rounded-lg gap-3 shadow-xl w-[370px] h-[170px] p-6 transition duration-500 ease-in-out transform hover:scale-105 hover:brightness-90 ScrollEffectApper flex flex-row items-center"
+                    className="cursor-pointer rounded-lg gap-3 shadow-xl w-[390px] h-[190px] p-6 transition duration-500 ease-in-out transform hover:scale-105 hover:brightness-90 ScrollEffectApper flex flex-row items-center"
                   >
-                    <div className={`flex items-center justify-center w-[40%] ${index === 11 ? "pt-0" : ""}`}>
-                      <img src={item.icon} className="w-[100%] object-cover transition duration-500 ease-in-out transform hover:scale-110" alt={item.text[appSetting.Language]} />
+                    <div className="image-container w-[40%]">
+                      <img className="w-[100%] object-cover transition duration-500 ease-in-out transform hover:scale-110" src={item.icon} alt="Image" />
                     </div>
-                    <div className="flex flex-col items-start ml-4 w-full">
-                      <h1 className="text-xl font-bold my-2 text-left">{item.text[appSetting.Language]}</h1>
-                      <div className="text-sm text-">
-                        {item.services.map((service, serviceIndex) => (
-                          <p className="inline text-right" key={serviceIndex}>
-                            {serviceIndex === 0 ? "" : " - "}
-                            {service}
-                          </p>
+                    <div className="text-container w-full my-4">
+                      <h4 className="font-semibold text-lg text-center dark:text-gray-100">{item.text[appSetting.Language]}</h4>
+                      <div className="mt-2">
+                        {item.services.map((service, i) => (
+                          <React.Fragment key={i}>
+                            <span className={index === 11 ? "text-xs" : ""}>
+                              {service[appSetting.Language]} {/* Display both English and Arabic */}
+                            </span>
+                            <span>{i === item.services.length - 1 ? "" : " - "}</span>
+                          </React.Fragment>
                         ))}
                       </div>
                     </div>
                   </a>
                 ))}
               </div>
+            </div>
+            <div className="mt-12 text-center">
+              <a href={StoreLink} className="py-3 px-5 text-sm md:text-lg rounded-lg bg-gradient-to-l from-[#2375f3] to-primary text-white shadow-sm mt-4 hover:opacity-75">
+                {Text.Head2[appSetting.Language]}
+              </a>
             </div>
           </div>
         </div>

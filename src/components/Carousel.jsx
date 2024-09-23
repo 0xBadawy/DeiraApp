@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Image1 from "../assets/Images/Banners/Banner (2).png";
 import Image2 from "../assets/Images/Banners/Banner (1).png";
 import { FaW, FaWhatsapp } from "react-icons/fa6";
+import { AppSettingContext } from "../context/ThemeContext";
 
 const Carousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const images = [Image1, Image2];
+  const { appSetting } = useContext(AppSettingContext);
+  const Language = appSetting.Language;
 
   const nextSlide = () => {
     setActiveIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -37,7 +40,7 @@ const Carousel = () => {
 
             {/* WhatsApp Button */}
             <a href={whatsappURL} className="absolute bottom-5 left-14 bg-green-500 text-white px-4 py-2 rounded-full shadow-lg" target="_blank" rel="noopener noreferrer">
-              تواصل معنا عبر الواتساب
+              {Language == "ar" ? "تواصل معنا عبر الواتساب" : "Contact us via WhatsApp"}
               <FaWhatsapp className="inline-block text-2xl mx-2" />
             </a>
           </div>

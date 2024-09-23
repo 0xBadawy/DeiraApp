@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { AppSettingContext } from "../context/ThemeContext";
 
 const PrivacyPolicy = () => {
   // State to store the text in Arabic and English
+  const { appSetting } = useContext(AppSettingContext);
+  const language = appSetting.Language;
+
   const [texts] = useState({
     title: {
       en: "Privacy Policy",
@@ -97,10 +101,8 @@ const PrivacyPolicy = () => {
     ],
   });
 
-  const language = "ar";
-
   return (
-    <div className="bg-purple-100">
+    <div className="bg-purple-100" style={{ direction: appSetting.Language == "ar" ? "rtl" : "ltr" }}>
       <div className="privacy-policy container mx-auto px-4   py-[50px]">
         <h1 className="text-3xl font-bold text-black mb-6 text-center">{texts.title[language]}</h1>
         <p className="text-gray-900 text-lg mb-6 text-center">{texts.intro[language]}</p>

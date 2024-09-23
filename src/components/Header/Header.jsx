@@ -31,10 +31,7 @@ const Header = ({ scrollToSection, refs }) => {
     }));
   };
 
-  const NavLinks = [
-    { title: { ar: "تواصل معنا", en: "About" }, Link: "/" },
-    { title: { ar: "سياسة الخصوصية", en: "Contact Us" }, Link: "/policy" },
-  ];
+  const NavLinks = [{ title: { ar: "سياسة الخصوصية", en: "Privacy Policy" }, Link: "/policy" }];
 
   const SocialMedia = [
     { icon: <FaFacebookF className="text-[#1877F2]" />, link: "https://www.facebook.com/profile.php?id=61564365985435", name: "Facebook" },
@@ -50,7 +47,7 @@ const Header = ({ scrollToSection, refs }) => {
   const Navs = () => (
     <div className="mx-auto dark:text-white">
       <nav>
-        <ul className="flex items-center gap-10 mr-10 md:gap-10 font-medium">
+        <ul className="flex items-center gap-10 mx-auto md:gap-10 font-medium">
           {NavLinks.map((item) => (
             <li className="hover:cursor-pointer hover:text-primary hover:font-bold duration-300" key={item.title.ar} onClick={item.action}>
               <Link to={item.Link}>
@@ -63,10 +60,68 @@ const Header = ({ scrollToSection, refs }) => {
     </div>
   );
 
+  const ContactUs = () => (
+    <div>
+      <h6 className="my-3 lg:my-5">{appSetting.Language === "ar" ? "تواصل معنا" : "Contact us"}</h6>
+      <ul>
+        {contactInfo.map((item, index) => (
+          <li key={index}>
+            <a href={item.link} className="flex items-center mt-4 gap-3 transition duration-100 ease-in transform hover:opacity-70 w-fit font-light">
+              <IoIosArrowBack />
+              {item.icon}
+              {item.text.ar}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+
+  const ContactUsMin = () => (
+    <div>
+      <h6 className="mt-3 lg:my-5 text-sm">{appSetting.Language === "ar" ? "تواصل معنا" : "Contact us"}</h6>
+      <ul>
+        {contactInfo.map((item, index) => (
+          <li key={index}>
+            <a href={item.link} className="flex items-center text-sm gap-1 transition duration-100 ease-in transform hover:opacity-70 w-fit font-light">
+              <IoIosArrowBack />
+              {item.icon}
+              {item.text.ar}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+
+  const Social = () => (
+    <div>
+      <div className="text-sm md:text-lg">{appSetting.Language === "ar" ? "حساباتنا على السوشيال ميديا" : "Our social media accounts"}</div>
+      <div className="flex gap-4 md:gap-3 mt-5 md:mt-10 items-center">
+        {SocialMedia.map((item, index) => (
+          <a key={index} href={item.link} target="_blank" className="md:text-4xl hover:text-primary hover:font-bold duration-300 " rel="noopener noreferrer">
+            {item.icon}
+          </a>
+        ))}
+      </div>
+
+      <div className="md:hidden  block"> {ContactUsMin()}</div>
+    </div>
+  );
+
+  const ChangeLng = () => (
+    <button
+      onClick={handleLanguage}
+      className={`focus:outline-none rounded-md border-2 ml-1 px-[6px] py-[2px] ${appSetting.IsDark ? "text-[#FFF] border-white" : "text-primary border-primary"} `}
+    >
+      {appSetting.Language === "ar" ? <p className="font-semibold">en</p> : <p className="font-semibold">ar</p>}
+    </button>
+  );
+
   return (
     <div className={`dark:bg-black ${appSetting.IsDark ? "dark" : ""}`}>
       <div className="pt-6 pb-4 shadow-md dark:bg-black" style={{ direction: appSetting.Language === "ar" ? "rtl" : "ltr" }}>
-        <div className="container mx-auto max-w-[1200px] px-3 md:h-[20vh] h-[20vh] ">
+        <div className="container mx-auto max-w-[1200px] px-3 md:h-[20vh] h-[26vh] ">
           <div className="flex items-center mx-auto justify-between">
             <div>
               <Link to="/">
@@ -74,33 +129,10 @@ const Header = ({ scrollToSection, refs }) => {
               </Link>
             </div>
             <div className="hidden md:block">{Navs()}</div>
-            <div className=" items-center text-center text-xl gap-10 flex flex-">
-              <div>
-                <div className="text-sm md:text-lg">{"حساباتنا على السوشيال ميديا"}</div>
-                <div className="flex gap-5 md:gap-3 mt-10 items-center">
-                  {SocialMedia.map((item, index) => (
-                    <a key={index} href={item.link} target="_blank" className="md:text-4xl hover:text-primary hover:font-bold duration-300 " rel="noopener noreferrer">
-                      {item.icon}
-                    </a>
-                  ))}
-                </div>
-              </div>
-              <div>
-                <div>
-                  <h6 className="my-3 lg:my-5">تواصل معنا</h6>
-                  <ul>
-                    {contactInfo.map((item, index) => (
-                      <li key={index}>
-                        <a href={item.link} className="flex items-center mt-4 gap-3 transition duration-100 ease-in transform hover:opacity-70 w-fit font-light">
-                          <IoIosArrowBack />
-                          {item.icon}
-                          {item.text.ar}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
+            <div className=" items-center text-center text-xl gap-4 flex flex-">
+              <div className="">{Social()}</div>
+              <div className="hidden  md:block"> {ContactUs()}</div>
+              <div className=""> {ChangeLng()}</div>
             </div>
           </div>
           <div className="items-center mt-3 mr-2 md:hidden">
