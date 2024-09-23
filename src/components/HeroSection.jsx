@@ -3,6 +3,7 @@ import { AppSettingContext } from "../context/ThemeContext";
 import screenImage from "../assets/Screens/Image1.png";
 import Money from "../assets/Images/10-rs 1.png";
 import axios from "axios";
+import {  downloadLinks } from "../context/EditLinks.js";
 
 const getOS = () => {
   const userAgent = window.navigator.userAgent;
@@ -57,7 +58,7 @@ const HeroSection = () => {
                 <div>
                   <div className="flex-col items-center flex mx-auto gap-10  md:gap-14 md:flex-row-reverse md:mt-9 w-fit ">
                     <div
-                      onClick={() => window.open("https://apps.apple.com/sa/app", "_blank")}
+                      onClick={() => window.open(downloadLinks.ios, "_blank")}
                       className="cursor-pointer  flex mt-3 w-48 scale-125 h-14 transition duration-500 ease-in-out transform hover:scale-150 bg-black text-white rounded-xl items-center justify-center "
                     >
                       <div className="mr-3">
@@ -75,7 +76,7 @@ const HeroSection = () => {
                     </div>
 
                     <div
-                      onClick={() => window.open("https://play.google.com/store/apps/", "_blank")}
+                      onClick={() => window.open(downloadLinks.android, "_blank")}
                       className="flex mt-3 w-48 scale-125 h-14 bg-black text-white rounded-lg items-center justify-center transition duration-500 ease-in-out transform hover:scale-150  cursor-pointer"
                       style={{ direction: appSetting.Language == "ar" ? "ltr" : "ltr" }}
                     >

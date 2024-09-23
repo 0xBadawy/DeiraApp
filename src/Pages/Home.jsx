@@ -1,11 +1,6 @@
-import React, { useRef, useEffect } from "react";
 import Header from "../components/Header/Header";
-import CategoriesOverview from "../components/CategoriesOverview";
 import HeroSection from "./../components/HeroSection";
 import FeaturesCards from "../components/FeaturesCards";
-import PhoneSection from "../components/PhoneSection";
-import RideEasy from "../components/RideEasy";
-import FooterSection from "../components/FooterSection";
 import Carousel from "./../components/Carousel";
 import Footer from "../components/Footer/Footer";
 import WhatsAppButton from "./../components/WhatsAppButton";
@@ -15,14 +10,10 @@ const Home = () => {
   return (
     <>
       <Header />
-
       <HeroSection />
       <AvailableAreasSection />
       <FeaturesCards />
-
       <Carousel />
-      {/* <FooterSection /> */}
-
       <Footer />
       <WhatsAppButton />
     </>

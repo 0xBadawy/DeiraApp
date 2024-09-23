@@ -54,7 +54,7 @@ const AvailableAreasSection = () => {
         <div className="bg-white text-gray-800 p-6 rounded-lg shadow-lg">
           {content.regions.map((region, index) => (
             <div key={index} className="text-2xl mb-4">
-              <span className="font-bold">{region.title[appSetting.Language]}:</span> {region.cities.map((city, cityIndex) => city[appSetting.Language]).join(" ، ")}
+              <span className="font-bold">{region.title[appSetting.Language]}:</span> {region.cities.map((city) => city[appSetting.Language]).join(" ، ")}
             </div>
           ))}
         </div>

@@ -10,19 +10,24 @@ import { Link } from "react-router-dom";
 import { RiSnapchatLine } from "react-icons/ri";
 import { IoIosArrowBack, IoIosMail } from "react-icons/io";
 import { SiWhatsapp } from "react-icons/si";
+import { contactLinks, downloadLinks,socialMediaLinks } from "../../context/EditLinks.js";
 
 const Header = ({ scrollToSection, refs }) => {
   const { appSetting, setAppSetting } = useContext(AppSettingContext);
 
-  const handleDark = () => {
-    setAppSetting((prev) => ({ ...prev, IsDark: !prev.IsDark }));
-  };
-
   const [contactInfo, setContactInfo] = useState([
-    { text: { en: "drabdulaziza46@gmail.com", ar: "drabdulaziza46@gmail.com" }, link: "mailto:drabdulaziza46@gmail.com", icon: <IoIosMail /> },
-    { text: { en: "00966507728885", ar: "00966507728885" }, link: "tel:00966507728885", icon: <FaPhone /> },
-    { text: { en: "00966507728885", ar: "00966507728885" }, link: "https://api.whatsapp.com/send?phone=00966507728885", icon: <SiWhatsapp /> },
+    { text: { en: "drabdulaziza46@gmail.com", ar: "drabdulaziza46@gmail.com" }, link: "mailto:" + contactLinks.email, icon: <IoIosMail /> },
+    { text: { en: contactLinks.phone, ar: contactLinks.phone }, link: "tel:"+ contactLinks.phone, icon: <FaPhone /> },
+    { text: { en: contactLinks.phone, ar: contactLinks.phone }, link: contactLinks.whatsapp, icon: <SiWhatsapp /> },
   ]);
+
+  const SocialMedia = [
+    { icon: <FaFacebookF className="text-[#1877F2]" />, link: socialMediaLinks.facebook, name: "Facebook" },
+    { icon: <FaInstagram className="text-[#5b51d8]" />, link: socialMediaLinks.instagram, name: "Instagram" },
+    { icon: <FaTiktok className="text-[#000]" />, link: socialMediaLinks.tiktok, name: "Tiktok" },
+    { icon: <RiSnapchatLine className="text-[#FFFC00]" />, link: socialMediaLinks.snapchat, name: "Snapchat" },
+    { icon: <FaXTwitter className="text-[#000]" />, link: socialMediaLinks.x, name: "X" },
+  ];
 
   const handleLanguage = () => {
     setAppSetting((prev) => ({
@@ -33,17 +38,6 @@ const Header = ({ scrollToSection, refs }) => {
 
   const NavLinks = [{ title: { ar: "سياسة الخصوصية", en: "Privacy Policy" }, Link: "/policy" }];
 
-  const SocialMedia = [
-    { icon: <FaFacebookF className="text-[#1877F2]" />, link: "https://www.facebook.com/profile.php?id=61564365985435", name: "Facebook" },
-    { icon: <FaInstagram className="text-[#5b51d8]" />, link: "https://www.instagram.com/alsharqiaoffers", name: "Instagram" },
-    { icon: <FaTiktok className="text-[#000]" />, link: "https://www.tiktok.com/@alsharqiaoffers", name: "Tiktok" },
-    {
-      icon: <RiSnapchatLine className="text-[#FFFC00]" />,
-      link: "https://www.snapchat.com/add/alsharqiaoffers?sender_web_id=dc0b7482-b285-4663-9e29-094ce1b79a6d&device_type=desktop&is_copy_url=true",
-      name: "Snapchat",
-    },
-    { icon: <FaXTwitter className="text-[#000]" />, link: "https://x.com/alsharqiaoffers", name: "Snapchat" },
-  ];
   const Navs = () => (
     <div className="mx-auto dark:text-white">
       <nav>
@@ -77,23 +71,6 @@ const Header = ({ scrollToSection, refs }) => {
     </div>
   );
 
-  const ContactUsMin = () => (
-    <div>
-      <h6 className="mt-3 lg:my-5 text-sm">{appSetting.Language === "ar" ? "تواصل معنا" : "Contact us"}</h6>
-      <ul>
-        {contactInfo.map((item, index) => (
-          <li key={index}>
-            <a href={item.link} className="flex items-center text-sm gap-1 transition duration-100 ease-in transform hover:opacity-70 w-fit font-light">
-              <IoIosArrowBack />
-              {item.icon}
-              {item.text.ar}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-
   const Social = () => (
     <div>
       <div className="text-sm md:text-lg">{appSetting.Language === "ar" ? "حساباتنا على السوشيال ميديا" : "Our social media accounts"}</div>
@@ -104,8 +81,6 @@ const Header = ({ scrollToSection, refs }) => {
           </a>
         ))}
       </div>
-
-      {/* <div className="md:hidden  block"> {ContactUsMin()}</div> */}
     </div>
   );
 

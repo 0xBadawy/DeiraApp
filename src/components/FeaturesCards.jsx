@@ -13,6 +13,8 @@ import image03 from "../assets/Images/SubImages/image (3).png";
 import image04 from "../assets/Images/SubImages/image (10).png";
 import image05 from "../assets/Images/SubImages/image (9).png";
 
+import { downloadLinks } from "../context/EditLinks.js";
+
 import "./style.css";
 
 const getOS = () => {
@@ -198,16 +200,16 @@ const FeaturesCards = () => {
   };
 
   const { appSetting } = useContext(AppSettingContext);
-  const [StoreLink, setStoreLink] = useState("https://apps.apple.com/sa/app");
+  const [StoreLink, setStoreLink] = useState(downloadLinks.android);
 
   useEffect(() => {
     const os = getOS();
     if (os === "iOS" || os === "MacOS") {
-      setStoreLink("https://apps.apple.com/sa/app");
+      setStoreLink(downloadLinks.ios);
     } else if (os === "Android" || os === "Linux") {
-      setStoreLink("https://play.google.com/store/apps");
+      setStoreLink(downloadLinks.android);
     } else {
-      setStoreLink("https://apps.apple.com/sa/app");
+      setStoreLink(downloadLinks.android);
     }
   }, []);
 

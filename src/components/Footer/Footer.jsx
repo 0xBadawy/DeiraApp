@@ -5,33 +5,30 @@ import FooterLogo from "../../assets/Images/Logo/Logo0.png";
 import { FaXTwitter } from "react-icons/fa6";
 import { SiWhatsapp } from "react-icons/si";
 import { AppSettingContext } from "../../context/ThemeContext";
+import { contactLinks, downloadLinks, socialMediaLinks } from "../../context/EditLinks.js";
 
 const Footer = () => {
   const { appSetting } = useContext(AppSettingContext);
   const Language = appSetting.Language;
 
   const [socialMedia] = useState([
-    { text: { en: "Facebook", ar: "فيسبوك" }, link: "https://www.facebook.com/profile.php?id=61564365985435", icon: <FaFacebookF /> },
-    { text: { en: "Instagram", ar: "إنستغرام" }, link: "https://www.instagram.com/alsharqiaoffers", icon: <FaInstagram /> },
-    { text: { en: "TikTok", ar: "تيك توك" }, link: "https://www.tiktok.com/@alsharqiaoffers", icon: <FaTiktok /> },
-    {
-      text: { en: "Snapchat", ar: "سناب" },
-      link: "https://www.snapchat.com/add/alsharqiaoffers?sender_web_id=dc0b7482-b285-4663-9e29-094ce1b79a6d&device_type=desktop&is_copy_url=true",
-      icon: <FaSnapchatGhost />,
-    },
-    { text: { en: "X", ar: "اكس" }, link: "https://x.com/alsharqiaoffers", icon: <FaXTwitter /> },
+    { text: { en: "Facebook", ar: "فيسبوك" }, link: socialMediaLinks.facebook, icon: <FaFacebookF /> },
+    { text: { en: "Instagram", ar: "إنستغرام" }, link: socialMediaLinks.instagram, icon: <FaInstagram /> },
+    { text: { en: "TikTok", ar: "تيك توك" }, link: socialMediaLinks.tiktok, icon: <FaTiktok /> },
+    { text: { en: "Snapchat", ar: "سناب" }, link: socialMediaLinks.snapchat, icon: <FaSnapchatGhost /> },
+    { text: { en: "X", ar: "اكس" }, link: socialMediaLinks.x, icon: <FaXTwitter /> },
   ]);
 
+  // حالة معلومات الاتصال
+  const [contactInfo] = useState([
+    { text: { en: contactLinks.email, ar: contactLinks.email }, link: "mailto:" + contactLinks.email, icon: <IoIosMail /> },
+    { text: { en: contactLinks.phone, ar: contactLinks.phone }, link: "tle:" + contactLinks.phone, icon: <FaPhone /> },
+    { text: { en: "WhatsApp", ar: "واتساب" }, link: contactLinks.whatsapp, icon: <SiWhatsapp /> },
+  ]);
   const [footerLinks] = useState([
     { text: { en: "About Us", ar: "عنّا" }, link: "#" },
     { text: { en: "Services", ar: "الخدمات" }, link: "#" },
     { text: { en: "Contact Us", ar: "تواصل معنا" }, link: "#" },
-  ]);
-
-  const [contactInfo] = useState([
-    { text: { en: "drabdulaziza46@gmail.com", ar: "drabdulaziza46@gmail.com" }, link: "mailto:drabdulaziza46@gmail.com", icon: <IoIosMail /> },
-    { text: { en: "00966507728885", ar: "00966507728885" }, link: "tel:00966507728885", icon: <FaPhone /> },
-    { text: { en: "WhatsApp", ar: "واتساب" }, link: "https://api.whatsapp.com/send?phone=00966507728885", icon: <SiWhatsapp /> },
   ]);
 
   return (
