@@ -1,8 +1,25 @@
-# React + Vite
+# Deira Ads - Landing Page
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive landing page designed for the **Deira Ads** application, helping businesses connect with local customers through easy and effective advertising.
 
-Currently, two official plugins are available:
+## Project Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project was developed as part of a freelance job on [Mostaql](https://mostaql.com/), with the goal of enhancing the app’s visibility and user engagement.
+
+## Features
+
+- Clean and modern design
+- Fully responsive and mobile-friendly layout
+- Call-to-action buttons to encourage businesses to advertise
+
+## Technologies Used
+
+- **React.js** for building the user interface
+- **Tailwind CSS** for styling and responsive design
+- JavaScript for interactivity
+
+## Installation
+
+1. Clone the repository:
+   ```bash
+      git clone https://github.com/yourusername/deira-ads-landing-page.git
