@@ -84,6 +84,7 @@ const Header = ({ scrollToSection, refs }) => {
     </div>
   );
 
+  
   const ChangeLng = () => (
     <button
       onClick={handleLanguage}
