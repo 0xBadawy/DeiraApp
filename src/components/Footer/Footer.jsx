@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useContext, useState } from "react";
 import { IoIosArrowBack, IoIosMail } from "react-icons/io";
 import { FaFacebookF, FaInstagram, FaPhone, FaSnapchatGhost, FaTiktok } from "react-icons/fa";
