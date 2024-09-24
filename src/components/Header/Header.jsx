@@ -10,14 +10,14 @@ import { Link } from "react-router-dom";
 import { RiSnapchatLine } from "react-icons/ri";
 import { IoIosArrowBack, IoIosMail } from "react-icons/io";
 import { SiWhatsapp } from "react-icons/si";
-import { contactLinks, downloadLinks,socialMediaLinks } from "../../context/EditLinks.js";
+import { contactLinks, downloadLinks, socialMediaLinks } from "../../context/EditLinks.js";
 
 const Header = ({ scrollToSection, refs }) => {
   const { appSetting, setAppSetting } = useContext(AppSettingContext);
 
   const [contactInfo, setContactInfo] = useState([
     { text: { en: "drabdulaziza46@gmail.com", ar: "drabdulaziza46@gmail.com" }, link: "mailto:" + contactLinks.email, icon: <IoIosMail /> },
-    { text: { en: contactLinks.phone, ar: contactLinks.phone }, link: "tel:"+ contactLinks.phone, icon: <FaPhone /> },
+    { text: { en: contactLinks.phone, ar: contactLinks.phone }, link: "tel:" + contactLinks.phone, icon: <FaPhone /> },
     { text: { en: contactLinks.phone, ar: contactLinks.phone }, link: contactLinks.whatsapp, icon: <SiWhatsapp /> },
   ]);
 
@@ -95,8 +95,8 @@ const Header = ({ scrollToSection, refs }) => {
 
   return (
     <div className={`dark:bg-black ${appSetting.IsDark ? "dark" : ""}`}>
-      <div className="pt-6 pb-4 shadow-md dark:bg-black" style={{ direction: appSetting.Language === "ar" ? "rtl" : "ltr" }}>
-        <div className="container mx-auto max-w-[1200px] px-3 md:h-[20vh] h-[30vh] ">
+      <div className="pt-6 pb-4 overflow-hidden shadow-md dark:bg-black" style={{ direction: appSetting.Language === "ar" ? "rtl" : "ltr" }}>
+        <div className="container mx-auto max-w-[1200px] px-3 md:h-[20vh] h-fit ">
           <div className="flex items-center mx-auto justify-between">
             <div>
               <Link to="/">
@@ -106,7 +106,7 @@ const Header = ({ scrollToSection, refs }) => {
             <div className="hidden md:block">{Navs()}</div>
             <div className=" items-center text-center text-xl gap-4 flex flex-">
               <div className="">{Social()}</div>
-              <div className="hidden  md:block"> {ContactUs()}</div>
+              <div className="hidden  lg:block"> {ContactUs()}</div>
               <div className=""> {ChangeLng()}</div>
             </div>
           </div>

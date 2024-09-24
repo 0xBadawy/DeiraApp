@@ -20,6 +20,16 @@ export default {
           900: "#212121",
         },
       },
+      screens: {
+        screens: {
+          sm: "576px", // Small devices (phones)
+          md: "769px", // Medium devices (tablets)
+          mm: "850px", // Medium to large devices
+          lg: "992px", // Large devices (desktops)
+          ll: "1100px", // Large to extra large devices
+          xl: "1200px", // Extra large devices (large desktops)
+        },
+      },
     },
   },
   plugins: [],

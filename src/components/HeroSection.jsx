@@ -3,7 +3,7 @@ import { AppSettingContext } from "../context/ThemeContext";
 import screenImage from "../assets/Screens/Image1.png";
 import Money from "../assets/Images/10-rs 1.png";
 import axios from "axios";
-import {  downloadLinks } from "../context/EditLinks.js";
+import { downloadLinks } from "../context/EditLinks.js";
 
 const getOS = () => {
   const userAgent = window.navigator.userAgent;
@@ -39,12 +39,16 @@ const HeroSection = () => {
   return (
     <>
       <div className={`dark:bg-black ${appSetting.IsDark && "dark"}`} style={{ direction: appSetting.Language == "ar" ? "rtl" : "ltr" }}>
-        <div className="md:h-[82vh] h-[130vh] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#8A2BE276] via-[#fff] to-[#8A2BE276]   dark:bg-gradient-to-t  dark:from-[#000]  dark:via-gray-700  dark:to-[#000]">
+        <div className="md:h-[110vh]  mm:h-[110vh] h-[130vh] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#8A2BE276] via-[#fff] to-[#8A2BE276]   dark:bg-gradient-to-t  dark:from-[#000]  dark:via-gray-700  dark:to-[#000]">
           <div className="container mx-auto  mb-[50px]">
             <div className="flex items-center justify-between mx-auto max-w-[1200px] ">
               <div className="text-center w-full" style={{ direction: "rtl" }}>
                 <div className={`p-9 text-center  md:p-0} `}>
-                  <h2 className={`md:text-[70px] text-[39px]  font-bold my-8 dark:text-[#ffffff] ${appSetting.Language == "ar" ? "text-[70px]" : "text-[50px]"}  `}>
+                  <h2
+                    className={`md:text-[70px] text-[39px]  font-bold my-8 dark:text-[#ffffff] ${
+                      appSetting.Language == "ar" ? "md:text-[70px] text-[39px]" : "md:text-[70px] text-[50px]"
+                    }  `}
+                  >
                     {text.secondTitle[appSetting.Language]}
                     <span className="text-primary font-black text-[40px] md:text-[90px]">{text.title[appSetting.Language]}</span>
 
