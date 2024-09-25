@@ -84,10 +84,10 @@ const Header = ({ scrollToSection, refs }) => {
     </div>
   );
 
-  
+
   const ChangeLng = () => (
     <button
-      onClick={handleLanguage}
+      onClick={handleLanguage} 
       className={`focus:outline-none rounded-md border-2 ml-1 px-[6px] py-[2px] ${appSetting.IsDark ? "text-[#FFF] border-white" : "text-primary border-primary"} `}
     >
       {appSetting.Language === "ar" ? <p className="font-semibold">en</p> : <p className="font-semibold">ar</p>}
