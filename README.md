@@ -20,6 +20,7 @@ This project was developed as part of a freelance job on [Mostaql](https://mosta
 
 ## Installation
 
+
 1. Clone the repository:
    ```bash
       https://github.com/0xBadawy/DeiraApp.git
